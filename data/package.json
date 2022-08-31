@@ -1,6 +1,1 @@
-{
-  "name": "YouthGroupContactList",
-  "version": "1.0.0",
-  "dependencies": {
-  }
-}
+[{"firstName":"Addison","lastName":"McNally","phoneNumbers":["3136712701"],"birthday":"Sep 26, 3891, 12:00:00 AM"},{"grade":"8","firstName":"Addison","lastName":"McNally","phoneNumbers":["3136712701"],"birthday":"Sep 26, 3891, 12:00:00 AM"}]

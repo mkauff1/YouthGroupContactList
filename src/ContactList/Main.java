@@ -10,9 +10,10 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Path YouthGroupPath = Paths.get("data", "package.json");
+        var db = new ContactFileDataSource(YouthGroupPath);
 
-        Contacts myList = new Contacts(YouthGroupPath);
-        myList.add(new Student("Addison", "McNally", Arrays.asList("3136712701"), new Date(1991, Calendar.SEPTEMBER,26), '8'));
+        Contacts myList = new Contacts(db);
+        myList.add(new Student("Addison", "Moe", Arrays.asList("3137348375"), new Date(1996, Calendar.SEPTEMBER,8), '8'));
         myList.save();
     }
 }

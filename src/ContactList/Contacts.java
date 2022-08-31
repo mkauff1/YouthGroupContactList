@@ -3,27 +3,18 @@ package ContactList;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class Contacts {
-    private final List<Person> contacts;
-    private final Path fileName;
+    private final IContactDataSource db;
+    private final ArrayList<Person> contacts;
 
-    public Contacts(Path fileName) throws IOException {
-        if (!Files.exists(fileName)){
-            Files.createFile(fileName);
-        }
-
-        this.contacts = Stream
-                .of(new Gson().fromJson(Files.readAllLines(fileName).get(0), Person[].class))
-                .toList();
-
-        this.fileName = fileName;
+    public Contacts(IContactDataSource db) throws IOException {
+        this.db = db;
+        this.contacts = new ArrayList<Person>(Arrays.asList(db.Load()));
     }
 
     public void add(Person contact){
@@ -45,7 +36,6 @@ public class Contacts {
     }
 
     public void save() throws IOException {
-        String personStr = new Gson().toJson(this.contacts);
-        Files.write(this.fileName, Stream.of(personStr).toList());
+        this.db.Save(this.contacts);
     }
 }
